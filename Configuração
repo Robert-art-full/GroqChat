@@ -1,0 +1,15 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GENAI_API_KEY = os.getenv("GENAI_API_KEY")
+GENAI_API_URL = os.getenv("GENAI_API_URL")
+
+if not GENAI_API_KEY:
+    raise ValueError("API KEY da Groq não encontrado")
+
+HEADERS = {
+    "Authorization": f"Bearer {GENAI_API_KEY}",
+    "Content-Type": "application/json"
+}
