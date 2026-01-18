@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner t = new Scanner(System.in);
+        System.out.print("Em que ano você nasceu? ");
+        int nasc = t.nextInt();
+        int id = 2026-nasc;
+        System.out.println("Sua idade é " + id);
+        if (id>=18) {
+        System.out.println("Maior de idade!");
+        } else {
+            System.out.println("Menor de idade!");
+        }
+    }
+}
