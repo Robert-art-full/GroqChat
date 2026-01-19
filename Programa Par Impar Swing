@@ -1,0 +1,86 @@
+import javax.swing.*;
+import java.awt.*;
+
+class ProgramaParImparSwing extends JFrame {
+
+    private JTextField campoNumero;
+    private JLabel resultado;
+
+    public ProgramaParImparSwing() {
+        setTitle("Par ou Ímpar");
+        setSize(350, 250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Fonte padrão
+        Font fonte = new Font("Arial", Font.PLAIN, 16);
+
+        // Painel principal
+        JPanel painel = new JPanel();
+        painel.setBackground(new Color(245, 245, 245));
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+
+        // Título
+        JLabel titulo = new JLabel("Descubra se é Par ou Ímpar");
+        titulo.setFont(new Font("Arial", Font.BOLD, 18));
+        titulo.setForeground(new Color(60, 60, 60));
+
+        // Campo de texto
+        campoNumero = new JTextField(10);
+        campoNumero.setFont(fonte);
+
+        // Botão
+        JButton botao = new JButton("Verificar");
+        botao.setFont(fonte);
+        botao.setBackground(new Color(70, 130, 180));
+        botao.setForeground(Color.WHITE);
+        botao.setFocusPainted(false);
+
+        // Resultado
+        resultado = new JLabel(" ");
+        resultado.setFont(new Font("Arial", Font.BOLD, 16));
+        resultado.setForeground(new Color(0, 102, 102));
+
+        // Ação do botão
+        botao.addActionListener(e -> {
+            try {
+                int numero = Integer.parseInt(campoNumero.getText());
+
+                if (numero % 2 == 0) {
+                    resultado.setText("✔ O número é PAR");
+                    resultado.setForeground(new Color(0, 128, 0));
+                } else {
+                    resultado.setText("✔ O número é ÍMPAR");
+                    resultado.setForeground(new Color(180, 0, 0));
+                }
+
+            } catch (NumberFormatException ex) {
+                resultado.setText("✖ Digite um número válido");
+                resultado.setForeground(Color.RED);
+            }
+        });
+
+        // Layout
+        gbc.gridx = 0; gbc.gridy = 0;
+        painel.add(titulo, gbc);
+
+        gbc.gridy = 1;
+        painel.add(campoNumero, gbc);
+
+        gbc.gridy = 2;
+        painel.add(botao, gbc);
+
+        gbc.gridy = 3;
+        painel.add(resultado, gbc);
+
+        add(painel);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new ProgramaParImparSwing().setVisible(true);
+        });
+    }
+}
